@@ -6,10 +6,9 @@ function Question({ questions }) {
   const [selectedAnswerTag, setSelectedAnswerTag] = useState(null);
   const [previousSelectedAnswerTag, setPreviousSelectedAnswerTag] =
     useState(null);
-  const [chance, setChance] = useState(0);
 
   const handleAnswerClicked = (e, answer) => {
-    setChance(chance + 1);
+    setIsDisabled(false);
     if (previousSelectedAnswerTag) {
       previousSelectedAnswerTag.style.border = "none";
     }
@@ -25,7 +24,6 @@ function Question({ questions }) {
     btns.forEach((btn) => {
       if (btn.dataset.answer == "true") correctBtn = btn;
     });
-    setChance(0);
     if (selectedAnswer) {
       selectedAnswerTag.classList.add("correct");
     } else {
@@ -51,19 +49,12 @@ function Question({ questions }) {
         ))}
       </div>
       <div>
-        {chance == 0 ? (
-          <button
-            disabled={isDisabled}
-            className='btn submit-btn'
-            onClick={() => handleSubmit()}
-          >
-            Submit
-          </button>
-        ) : (
-          <button className='btn submit-btn' onClick={() => handleSubmit()}>
-            Submit
-          </button>
-        )}
+        <button
+          className={`submit-btn ${isDisabled && "disabled"}`}
+          onClick={() => handleSubmit()}
+        >
+          Submit
+        </button>
       </div>
     </div>
   );

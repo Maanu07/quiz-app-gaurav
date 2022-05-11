@@ -109,7 +109,12 @@ html {
 .submit-btn {
   background: #d8eeff;
   color: #253b4c;
+  padding: 1rem;
   cursor: pointer;
+}
+
+.disabled {
+  cursor: no-drop;
 }
 
 .correct {
